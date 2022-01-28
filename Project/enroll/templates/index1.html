@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1> How To Create Online Exam Dynamic from AdminPanel </h1>
+        <h3> welcome to the {{exam_name}} exam </h3>
+    </hr>
+    </center>
+        <div style = "padding-left: 30px;" >
+        <form action="/showresult/{{exam_name}}" method="POST">   
+            {% csrf_token %}
+            {% for result in Exam %}
+                <table>
+                    <tr>
+                        <td>  {{result.question}} ? </td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" value="Option1" name= "{{result.id}}" required>{{result.Option1}}</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" value="Option2" name= "{{result.id}}">{{result.Option2}}</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" value="Option3" name= "{{result.id}}">{{result.Option3}}</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" value="Option4" name="{{result.id}}">{{result.Option4}}</td>
+                    </tr>
+                    <hr/>
+                </table>
+            {% endfor %}
+            <input type="submit" value="Click For Results" id="but1"/>
+            <a href="/logout/" >LogOut</a>
+        </form> 
+        </div>
+
+</body>
+</html>
